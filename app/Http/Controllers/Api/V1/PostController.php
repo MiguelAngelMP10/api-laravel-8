@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Resources\V1\PostResource;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class PostController extends Controller
 {
@@ -16,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return PostResource::collection(Post::latest()->paginate());
     }
 
     /**
@@ -61,6 +63,11 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        $post->delete();
+        return response()->json([
+            'message' => 'Post Deleted'
+        ], Response::HTTP_ACCEPTED);
     }
 }
