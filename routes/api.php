@@ -21,8 +21,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('v1/post', PostV1::class)
-    ->only(['index', 'show', 'destroy']);
+    ->only(['index', 'show', 'destroy'])
+    ->middleware('auth:sanctum');;
 
 
 Route::apiResource('v2/post', PostV2::class)
-    ->only(['index', 'show']);
+    ->only(['index', 'show'])
+    ->middleware('auth:sanctum');
