@@ -28,3 +28,7 @@ Route::apiResource('v1/post', PostV1::class)
 Route::apiResource('v2/post', PostV2::class)
     ->only(['index', 'show'])
     ->middleware('auth:sanctum');
+Route::post('login', [
+    App\Http\Controllers\Api\LoginController::class,
+    'login'
+]);
